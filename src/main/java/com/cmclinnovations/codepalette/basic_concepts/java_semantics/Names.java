@@ -1,21 +1,44 @@
 /**
+ * Packages https://docs.oracle.com/javase/tutorial/java/package/index.html
+ * A package is a grouping of related types providing access protection and name
+ * space management. 
  * 
+ * NOTE: types refers to classes, interfaces, enumerations, and annotation types.
+ * Enumerations and annotation types are special kinds of classes and interfaces.
+ * 
+ * You cannot use "-" (hyphens) within a package name, instead use "_" (underscore.)
  */
 package com.cmclinnovations.codepalette.basic_concepts.java_semantics;
 
 /**
- * TODO: 
+ * Importing https://docs.oracle.com/javase/tutorial/java/package/usepkgs.html
+ * Allows the use of other classes/types in your code. Every import
+ * statement is a dependency where the code being used is taken from another 
+ * location. These sometimes have to be downloaded using Maven look at pom.xml to
+ * see what version of a package you are currently using.
+ * 
+ * when an import statement is used the class or interface can be refereed to by
+ * its simple name. 
+ * To import all the types contained in a particular package, use the import 
+ * statement with the asterisk (*) wildcard character.
+ * 
+ * Name ambiguities can occur if a member in one package shares its name with a 
+ * member in another package and both packages are imported, you must refer to 
+ * each member by its qualified name. See the Logger objects below for example.
  */
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * This class demonstrates examples of Java semantics 
- * You can find out more by reading the related Oracle tutorials
+ * This class demonstrates examples of general Java language semantics.
+ * You can find out more by reading the related Oracle tutorials.
+ * https://docs.oracle.com/javase/tutorial/java/javaOO/index.html
  * 
  * Topics covered:
+ * -Packages and importing a package member
  * -Importing libraries and declaring objects
- * -Static variables and methods
+
+* -Static variables and methods
  * -Initialisation blocks (Within a Class and Instance) 
  * -Arbitrary number of arguments (also known as varargs) 
  * -Using the "this" keyword (Within an instance method or a constructor)
@@ -106,17 +129,22 @@ public class Names {
     }
 
     /**
-     * Add one or many names to the ArrayList allClassNames
+     * CHECK: What will happen when you try to make changes to a final var?
+     * Although this is valid Java the variable ALL_CLASS_NAMES is final
+     * and it will not work.
+     */
+    public static void someMethod(){
+        //TODO: Try and make changes to a final variable
+    }
+    
+    
+    /**
+     * Add one or many names to an ArrayList
+     * @param arrayList 
      * @param names pass an arbritrary amount of Strings
      */
-    @Deprecated
-    public static void addClassNames(String... names) {
-        /**
-         * CHECK: What will happen when you try to make changes to a final var?
-         * Although this is valid Java the variable ALL_CLASS_NAMES is final
-         * and it will not work.
-         */
-        ALL_CLASS_NAMES.addAll(Arrays.asList(names));
+    public static void addNames(ArrayList<String> arrayList,String... names) {
+        arrayList.addAll(Arrays.asList(names));
     }
 
     /**
