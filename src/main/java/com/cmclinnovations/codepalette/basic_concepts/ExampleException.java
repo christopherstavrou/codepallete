@@ -7,7 +7,6 @@ package com.cmclinnovations.codepalette.basic_concepts;
 
 /**
  *
- * @author Christopher Stavrou <cstavrou@cmclinnovations.com>
  */
 public class ExampleException extends Exception {
 
