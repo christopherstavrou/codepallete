@@ -22,22 +22,12 @@ public class CitiOne {
         return result;
     }
 
-    public int multiple3and5(int start,int end){
-        return IntStream.range(start, end).filter(i-> i % 3 == 0 || i % 5 == 0).sum();
-    }
-
-
     @Test
     public void Test_1() {
         Object input = null;
         Object expected = null;
         Object actual = function(input);
         Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void Test_2(){
-        System.out.println(multiple3and5(0,1000));
     }
 
 }
