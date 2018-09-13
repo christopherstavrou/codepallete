@@ -15,8 +15,9 @@ public class MiniMaxSum {
         int[] posArr = IntStream.of(arr).filter(i -> i>0).toArray();
         Arrays.sort(posArr);
 
-        final int min = IntStream.range(0, posArr.length > 4 ? 4: posArr.length).map(i -> posArr[i]).sum();
-        final int max = IntStream.range(posArr.length > 4 ? posArr.length - 4: posArr.length, posArr.length).map(i -> posArr[i]).sum();
+        final long min = IntStream.range(0, posArr.length >= 4 ? 4: posArr.length).map(i -> posArr[i]).asLongStream().sum();
+        final long max = IntStream.range(posArr.length >= 4 ? posArr.length - 4: posArr.length, posArr.length).map(i -> posArr[i]).asLongStream().sum();
+
 
         return new Number[]{min, max};
     }
