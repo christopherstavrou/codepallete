@@ -3,7 +3,7 @@ package com.cmclinnovations.codepalette.hackerrank;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class ChrisJeanieRoute {
+public class LukesJeaniesRoute {
 
     /*
      * Complete the jeanisRoute function below.
