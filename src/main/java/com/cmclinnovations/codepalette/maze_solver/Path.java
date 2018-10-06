@@ -6,7 +6,14 @@ public class Path {
     /**
      * The current location, or last visited location on the current path
      */
-    private final Location currentLocation = new Location(0, 0);
+    private final Location currentLocation;
+    private final Maze maze;
+
+    public Path(Maze maze) {
+        this.currentLocation = maze.getStart();
+        this.maze = (Maze) maze.clone();
+    }
+
 
     /**
      *
@@ -23,21 +30,10 @@ public class Path {
         }
     }
 
-    private void step(final Location location) {
-        currentLocation.setLocation(location);
+    private void step(final Location nextLocation) {
+        currentLocation.setLocation(nextLocation);
     }
-
     //<editor-fold desc="Checks">
-
-    /**
-     * Check if the location is a wall, a movement cannot be made if a wall is blocking the path
-     *
-     * @return false if a wall is blocking the path
-     */
-    private boolean isWall() { //TODO
-        return false;
-    }
-
 
     /**
      * Check if a movement can be made from one location to another
@@ -49,8 +45,9 @@ public class Path {
     private boolean canStep(final Location location) {
         boolean canTurn = false;
         Location nextLocation = location;
+
         if (!currentLocation.hasVisited(nextLocation)) {
-            if (!isWall()) canTurn = true;
+            if (maze.isTraversable(nextLocation)) canTurn = true;
         }
         return canTurn;
     }
