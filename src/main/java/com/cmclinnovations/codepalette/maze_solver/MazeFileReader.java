@@ -26,7 +26,7 @@ public class MazeFileReader {
                     } else if (linesRead == 2) {
                         endX = Integer.parseInt(lines[0]);
                         endY = Integer.parseInt(lines[0]);
-                        maze = new Maze(height, width, new Location(startX, startY), new Location(endX, endY));
+                        maze = new Maze(file.getName(), height, width, new Location(startX, startY), new Location(endX, endY));
                     }
                 } else {
                     int x = linesRead - 3;
@@ -55,11 +55,6 @@ public class MazeFileReader {
             e.printStackTrace();
         }
         return mazes;
-    }
-
-
-    public static void main(String[] args) {
-        getMazesFromResources();
     }
 
 

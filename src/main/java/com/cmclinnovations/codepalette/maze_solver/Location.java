@@ -3,7 +3,7 @@ package com.cmclinnovations.codepalette.maze_solver;
 import java.util.Objects;
 import java.util.Stack;
 
-public class Location {
+public class Location implements Cloneable {
 
     /**
      * A history of locations visited on the current path
@@ -60,5 +60,18 @@ public class Location {
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
+    }
+
+    @Override
+    protected Object clone() {
+        Location clone;
+        try {
+            clone = (Location) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new InternalError(e);
+        }
+
+        clone = new Location(getX(),getY());
+        return clone;
     }
 }

@@ -1,5 +1,7 @@
 package com.cmclinnovations.codepalette.maze_solver;
 
+import java.util.Objects;
+
 public class Path {
 
 
@@ -17,8 +19,11 @@ public class Path {
 
     /**
      *
+     *
      */
-    public void step() {
+    public Maze.State step() {
+        Maze.State state = Maze.State.HAS_MOVES;
+        Location oldLocation = (Location) currentLocation.clone();
         if (canStep(up())) {
             step(up());
         } else if (canStep(down())) {
@@ -28,6 +33,13 @@ public class Path {
         } else if (canStep(right())) {
             step(right());
         }
+
+        if (Objects.equals(currentLocation, maze.getFinish())) {
+            state = state.FINISHED;
+        } else if (Objects.equals(oldLocation, currentLocation)) {
+            state = state.HAS_NO_MOVES_LEFT;
+        }
+        return state;
     }
 
     private void step(final Location nextLocation) {
@@ -42,7 +54,7 @@ public class Path {
      *                 {@link Path#up()}, {@link Path#down()}, {@link Path#left()}, {@link Path#right()}
      * @return true if a movement can be made to the specified location, otherwise false
      */
-    private boolean canStep(final Location location) {
+    public boolean canStep(final Location location) {
         boolean canTurn = false;
         Location nextLocation = location;
 
