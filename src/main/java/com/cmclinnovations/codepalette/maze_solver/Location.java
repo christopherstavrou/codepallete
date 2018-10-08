@@ -5,10 +5,7 @@ import java.util.Stack;
 
 public class Location implements Cloneable {
 
-    /**
-     * A history of locations visited on the current path
-     */
-    private final Stack<Location> locationHistory = new Stack<>();
+
 
 
     //current location
@@ -21,7 +18,6 @@ public class Location implements Cloneable {
 
 
     public void setLocation(final Location location){
-        locationHistory.add(new Location(this.x,this.y));
         this.x = location.getX();
         this.y = location.getY();
     }
@@ -34,19 +30,7 @@ public class Location implements Cloneable {
         return y;
     }
 
-    /**
-     * Check if a location has been visited before in the paths history of locations
-     *
-     * @param nextLocation
-     * @return true if the location is present in the paths history
-     */
-    public boolean hasVisited(final Location nextLocation) {
-        boolean hasBeenVisited = false;
-        if (locationHistory.contains(nextLocation)) {
-            hasBeenVisited = true;
-        }
-        return hasBeenVisited;
-    }
+
 
     @Override
     public boolean equals(Object o) {
