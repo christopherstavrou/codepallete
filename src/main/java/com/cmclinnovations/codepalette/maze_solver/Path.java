@@ -41,17 +41,17 @@ public class Path {
 
         final List<Location> choices = new ArrayList<>();
 
-        if (canStep(up())) {
-            choices.add(up());
+        if (canStep(north())) {
+            choices.add(north());
         }
-        if (canStep(down())) {
-            choices.add(down());
+        if (canStep(east())) {
+            choices.add(east());
         }
-        if (canStep(left())) {
-            choices.add(left());
+        if (canStep(south())) {
+            choices.add(south());
         }
-        if (canStep(right())) {
-            choices.add(right());
+        if (canStep(west())) {
+            choices.add(west());
         }
 
         if (choices.isEmpty()) {
@@ -59,7 +59,11 @@ public class Path {
             //TODO try again from last decision point
         } else {
             for (Location choice : choices) {
-                //setCurrentLocation(choice);
+                setCurrentLocation(choice);
+                state = step();
+                if (Objects.equals(state, state.FINISHED)) {
+                    break;
+                } else if(Objects.equals(state,state.HAS_NO_MOVES_LEFT)) continue;
                 //TODO the following
                 //1. do the path with first choice
                 //2. if it hits a dead end pop current location till its back to the previousLocation
@@ -78,7 +82,7 @@ public class Path {
      * Check if a movement can be made from one location to another
      *
      * @param location one of the predefined movements
-     *                 {@link Path#up()}, {@link Path#down()}, {@link Path#left()}, {@link Path#right()}
+     *                 {@link Path#north()}, {@link Path#south()}, {@link Path#west()}, {@link Path#east()}
      * @return true if a movement can be made to the specified location, otherwise false
      */
     public boolean canStep(final Location location) {
@@ -107,20 +111,20 @@ public class Path {
     //</editor-fold>
 
     //<editor-fold desc="Movements">
-    private final Location up() {
-        return new Location(currentLocation.getX() + -1, currentLocation.getY());
+    private final Location north() {
+        return new Location(currentLocation.getX() - 1, currentLocation.getY());
     }
 
-    private final Location down() {
+    private final Location east() {
+        return new Location(currentLocation.getX(), currentLocation.getY() + 1);
+    }
+
+    private final Location south() {
         return new Location(currentLocation.getX() + 1, currentLocation.getY());
     }
 
-    private final Location left() {
+    private final Location west() {
         return new Location(currentLocation.getX(), currentLocation.getY() - 1);
-    }
-
-    private final Location right() {
-        return new Location(currentLocation.getX(), currentLocation.getY() + 1);
     }
     //</editor-fold>
 
